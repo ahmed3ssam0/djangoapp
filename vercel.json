@@ -1,20 +1,13 @@
 {
-  "builds": [
-    {
-      "src": "manage.py",
-      "use": "@vercel/python",
-      "config": {
-        "zeroConfig": true
-      }
-    }
-  ],
-  "functions": {
-    "api/*.py": {
-      "runtime": "vercel-python@0.5.0"
-    }
-  },
-  "github": {
-    "silent": false
-  },
-  "installCommand": "pip3 install -r requirements.txt"
+    "builds": [{
+        "src": "djangoProject/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.12.4" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "djangoProject/wsgi.py"
+        }
+    ]
 }
