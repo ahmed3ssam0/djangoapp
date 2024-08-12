@@ -1,7 +1,7 @@
 {% extends 'app/main.html' %}
 {% block content %}
 {% include 'app/status.html' %}
-
+<a class="btn btn-outline-info  btn-sm btn-block" style="width: 500px;" href="{% url 'create_order_user' %}">Place Order</a>
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
@@ -18,7 +18,7 @@
                         <td>{{ order.product }}</td>
                         <td>{{ order.product.category }}</td>
                         <td>{{ order.note }}</td>
-                        <td>{{ order.product.date_created }}</td>
+                        <td>{{ order.date_created }}</td>
                         <td>{{ order.status }}</td>
                     </tr>
                 {% endfor %}
