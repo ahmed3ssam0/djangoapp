@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
+from django import forms
 
 from .models import *
 
@@ -21,3 +22,15 @@ class CustomerForm(ModelForm):
         model = Customer
         fields = '__all__'
         exclude = ['user']
+
+
+class CreateOrderUser(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['product', 'status']
+
+    def __init__(self, *args, **kwargs):
+        super(CreateOrderUser, self).__init__(*args, **kwargs)
+        self.fields['status'].initial = 'Pending'
+        self.fields['status'].widget = forms.HiddenInput()
+        # self.fields['status'].disabled = True
